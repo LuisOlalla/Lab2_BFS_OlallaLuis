@@ -20,4 +20,13 @@ class Grafo:
        #Asignamos la dirección de nuestro grafo para saber si es dirigido o no
         self.matrizA_dirigido = dirigido
         #Implementamos un diccionario de datos para la lista de adyacencia y almacenar los nodos
-        self.matrizA_lista_adyacencia = {nodo: set() for nodo in self.matrizA_nodos}        
+        self.matrizA_lista_adyacencia = {nodo: set() for nodo in self.matrizA_nodos}    
+        
+        #Realizamos el borde del grafo        
+    def agregar_borde_grafo(self,nodo_1,nodo_2, peso_grafo=1):
+        """ Definimos los bordes del grafo, aumentamos los nodos y asignamos el peso del grafo. """        
+        self.matrizA_lista_adyacencia[nodo_1].add((nodo_2,peso_grafo)) #Aumentamos el segundo nodo en el primer nodo
+        #If cuando el nodo no este dirigido
+        if not self.matrizA_dirigido:
+            #Agregamos el primer nodo al segundo nodo en su lista.
+            self.matrizA_lista_adyacencia[nodo_2].add((nodo_1,peso_grafo))    
