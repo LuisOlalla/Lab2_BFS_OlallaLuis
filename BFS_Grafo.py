@@ -39,7 +39,7 @@ class Grafo:
          # Realizamos un for para recorrer por la lista de adyacencia       
         for llaves in self.matrizA_lista_adyacencia.keys():
             print("nodo",llaves,":",self.matrizA_lista_adyacencia[llaves]) #Imprimimos el nodo
-            #Funcion que imprime el recorrido transversal    
+    #Funcion que imprime el recorrido transversal    
     def busquedaA_transversal(self,nodo_de_inicio):
         """Imprimimos el valor de la busqueda de anchura del grafo y permite mostrar el recorrido.
         """ 
@@ -50,3 +50,36 @@ class Grafo:
         #Agregamos un nodo a la cola y uno en la visita
         cola.put(nodo_de_inicio)  #Agregar cola
         visitado.add(nodo_de_inicio) #Agregar visitado
+         # while para poder imprimir cada nodo
+        while not cola.empty():
+            #sacar un vertice 
+            nodo_reciente = cola.get()
+            #imprimir el vertice
+            print(nodo_reciente,end=" ")
+            
+            #Adquirir los vertices adyacentes del vertice que fue eliminado.
+            for (nodo_siguiente, peso_grafo) in self.matrizA_lista_adyacencia[nodo_reciente]:
+                #Marcamos como visitados a los adyacentes y se ponen en la cola
+                if nodo_siguiente not in visitado:
+                    cola.put(nodo_siguiente) #se pone en el nodo siguiete
+                    visitado.add(nodo_siguiente) # se marca como visitado
+
+if __name__ =="__main__":
+    
+    #Creamos una instancia a la clase del grafo
+    g=Grafo(5, dirigido=False) #El grafo no esta dirigido y tendra 5 nodos
+    
+    #Agregamos bordes al grafo con un peso de 1
+    g.agregar_borde_grafo(0,1) #Borde grafo de 0 a 1
+    g.agregar_borde_grafo(0,2) #Borde grafo de 0 a 2
+    g.agregar_borde_grafo(1,2) #Borde grafo de 1 a 2
+    g.agregar_borde_grafo(1,4) #Borde grafo de 1 a 4
+    g.agregar_borde_grafo(2,3) #Borde grafo de 2 a 3
+     
+    #vamos a imprimir la lista de adyacencia en el formulario del nodo
+    g.imprime_lista_adyacencia()
+   
+    print("El siguiente recorrido es el primero en anchura desde el vertice 0")#Avisamos que vamos a recorrer la anchura
+    #Imprimimos cada lista de las colas
+    g.busquedaA_transversal(0)
+    print()
