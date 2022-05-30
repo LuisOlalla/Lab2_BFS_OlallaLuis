@@ -30,3 +30,12 @@ class Grafo:
         if not self.matrizA_dirigido:
             #Agregamos el primer nodo al segundo nodo en su lista.
             self.matrizA_lista_adyacencia[nodo_2].add((nodo_1,peso_grafo))    
+            
+             #Imprimimos la representacion del grafo   
+    def imprime_lista_adyacencia(self):
+        
+        """Imprimimos el grafo en base a la lista de adyacencia
+        """  
+         # Realizamos un for para recorrer por la lista de adyacencia       
+        for llaves in self.matrizA_lista_adyacencia.keys():
+            print("nodo",llaves,":",self.matrizA_lista_adyacencia[llaves]) #Imprimimos el nodo
