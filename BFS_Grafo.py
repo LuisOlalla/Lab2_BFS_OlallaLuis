@@ -6,12 +6,20 @@
 from queue import Queue
 #Clase grafo en donde vamos a definir los objetos y constructor
 class Grafo:
+    """La clase principal nos ayuda a mostrar el grafo con los atributos correctos.
+    """    
     #Constructor del grafo
     def __init__(self, numero_nodos, dirigido=True):
         """
-        El método init nos ayuda a inicializar los atributos de nuestro objeto,
+        matrizA_numero_nodos, nos indica el numero de nodos del grafo.
+        matrizA_nodos, es el rango de los nodos del grafo.
+        matrizA_dirigidom, nos indica mediante true o false si el nodo es dirigido. 
+        matrizA_lista_adyacencia, nos guarda cada nodo.
+        
+        El método init ayuda a inicializar los atributos de nuestro objeto,
         utilizamos self para representar a la instancia de la clase Grafo,
         tenemos los parámetros numero nodos y la dirección que es dirigida.
+        
         """    
          #Asignamos que el numero de nodos de la matriz  es igual al numero de nodos del grafo    
         self.matrizA_numero_nodos = numero_nodos
@@ -24,7 +32,11 @@ class Grafo:
         
         #Realizamos el borde del grafo        
     def agregar_borde_grafo(self,nodo_1,nodo_2, peso_grafo=1):
-        """ Definimos los bordes del grafo, aumentamos los nodos y asignamos el peso del grafo. """        
+        """ Definimos los bordes del grafo, aumentamos los nodos y asignamos el peso del grafo.
+            Aqui definimos el borde que tendrá la lista de adyacencia, y sus diferentes parametros, 
+            como nodo_1, nodo_2 y el peso del grafo que de forma inicial estará en 1, al final 
+            agregamos a la lista de adyacencia que le corresponde.
+        """        
         self.matrizA_lista_adyacencia[nodo_1].add((nodo_2,peso_grafo)) #Aumentamos el segundo nodo en el primer nodo
         #If cuando el nodo no este dirigido
         if not self.matrizA_dirigido:
@@ -34,14 +46,16 @@ class Grafo:
     #Imprimimos la representacion del grafo   
     def imprime_lista_adyacencia(self):
         
-        """Imprimimos el grafo en base a la lista de adyacencia
+        """Imprimimos el grafo en base a la lista de adyacencia, no contiene metodos ni parametros.
         """  
          # Realizamos un for para recorrer por la lista de adyacencia       
         for llaves in self.matrizA_lista_adyacencia.keys():
-            print("nodo",llaves,":",self.matrizA_lista_adyacencia[llaves]) #Imprimimos el nodo
+            print("nodo",llaves,":",self.matrizA_lista_adyacencia[llaves]) #Imprimimos el nodo almacenado
     #Funcion que imprime el recorrido transversal    
     def busquedaA_transversal(self,nodo_de_inicio):
         """Imprimimos el valor de la busqueda de anchura del grafo y permite mostrar el recorrido.
+           Mediante este metodo podemos imprimir el recorrido de anchura de los nodos de inicio, ademas 
+           de crear la lista de colas que se han visitado.
         """ 
         #Nodos visitados para no tener bucles
         visitado = set()
@@ -65,7 +79,10 @@ class Grafo:
                     visitado.add(nodo_siguiente) # se marca como visitado
 
 if __name__ =="__main__":
-    
+    """
+        En esta clase vamos a instanciar el grafo para dar a conocer todos los metodos
+        establecidos anteriormente.  
+    """    
     #Creamos una instancia a la clase del grafo
     g=Grafo(5, dirigido=False) #El grafo no esta dirigido y tendra 5 nodos
     
